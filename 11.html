@@ -10,22 +10,30 @@
             //Het level inladen
             robotArm.loadLevel("exercise 11");
             // Jou instructies volgen hier
-            start = true;
             var vertte = 0;
-            robotArm.moveRight();
-            for(var i= 0; i < 10; i++){
-                vertte++;
+            for(i=0; i < 9; i++){
+                robotArm.moveRight();
+            }
+            robotArm.grab();
+            white = robotArm.scan();
+            if(white == "white"){
+                robotArm.moveLeft();
+            }
+            for(var i= 0; i < 30; i++){
                 robotArm.grab();
                 color = robotArm.scan();
                 if(color == "white"){
                     robotArm.moveRight();
-                    robotArm.drop();
-                }
-
+                    robotArm.drop();    
+            }
                 robotArm.drop();
-                robotArm.moveRight();
-                if(vertte > 8){
-                    break;
+                robotArm.moveLeft();
+                if(color == null){
+                    robotArm.grab();
+                    color2 = robotArm.scan();
+                    if(color2 == null){
+                        break;
+                    }
                 }
             }
 
