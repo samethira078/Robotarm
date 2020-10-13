@@ -1,0 +1,64 @@
+<html>
+    <body>
+        <canvas id="canvas" width="800" height="600"></canvas>
+        <script src="robot-arm.js"></script>
+        <script>
+          var canvas = document.getElementById("canvas");
+          var robotArm = new RobotArm(canvas); 
+          robotArm.randomLevel(1, 8);
+
+          // Je eigen code plaats je hier.
+          var white = ["white", 6, 6];
+          var red = ["red", 7];
+          var green = ["green", 8];
+          var blue = ["blue", 9];
+          var start = true;
+          var row = 0;
+          for(i=0; i< 5; i++){
+
+            robotArm.grab();
+            scannen = robotArm.scan();
+
+             if(scannen == white[0]){
+                for(row = row; row < white[1]; row++){
+                  robotArm.moveRight();
+                }
+                  robotArm.drop();
+                for(row = row; row < white[1] *2; row++){
+                  robotArm.moveLeft();
+                }
+             }
+            if(scannen == red[0]){
+                for(row = row; row < red[1]; row++){
+                  robotArm.moveRight();
+                }
+                  robotArm.drop();
+                for(row = row; row < red[1] *2; row++){
+                  robotArm.moveLeft();
+                }
+             }
+             if(scannen == green[0]){
+                for(row = row; row < green[1]; row++){
+                  robotArm.moveRight();
+                }
+                  robotArm.drop();
+                for(row = row; row < green[1] *2; row++){
+                  robotArm.moveLeft();
+                }
+
+             }
+             if(scannen == blue[0]){
+                for(row = row; row < blue[1]; row++){
+                  robotArm.moveRight();
+                }
+                  robotArm.drop();
+                for(row = row; row < blue[1] *2; row++){
+                  robotArm.moveLeft();
+                }
+             }
+        }
+             
+          robotArm.run();
+        </script>
+    </body>
+</html>
